@@ -21,9 +21,10 @@ These are the main webpages
 
 ![Main_page](cd1.png)
 
+
 # Authors:
-Ayyagari et al
+Ayyagari ET AL...
 
 # Acknowledgement:
-    
+Would like to thank all the resources on Youtube and Stack Overflow always! :)
  
