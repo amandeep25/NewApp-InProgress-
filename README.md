@@ -5,8 +5,8 @@ All the credentials are sent to firebase accountand to login the credentials mus
 Aloding icon is added so that it does not seem like the app freezed, while the credentials are matched.
 Link to login in the register page and link to register in login page.
 The logout button will take the user to login page.
-
-
+ 
+ 
  # In Action:
 This is the login page in the app
 
