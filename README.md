@@ -17,18 +17,23 @@ Tapping on the number sends the number directly. A custom text message can also 
 # In Action:
 
 These is the login page:
+
 ![login](login.jpeg)
 
 These is the register page:
+
 ![register](newacc.jpeg)
 
 These is the logging in page:
+
 ![logging_in](logging_in.jpeg)
 
 These is the logged in page:
+
 ![loggedin](logged_in.jpeg)
 
 These is the main page:
+
 ![mainpage](mainpage.jpeg)
 
 
