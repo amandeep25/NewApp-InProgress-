@@ -130,14 +130,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        zero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String string= String.valueOf(zero.getText());
-                sendReceive.write(string.getBytes());
-            }
-        });
-
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -390,5 +382,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
