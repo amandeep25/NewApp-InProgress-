@@ -61,6 +61,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewByIds();
+        
+        
+        
+        
+    button_cust.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(),Custom_button.class));
+           // progressBar.setVisibility(View.INVISIBLE);
+        }
+    });
+  
+         
+        
+        
         mybtadap=BluetoothAdapter.getDefaultAdapter();
 
         if(!mybtadap.isEnabled())
@@ -71,15 +86,15 @@ public class MainActivity extends AppCompatActivity {
 
         implementListeners();
 
-        button_cust.setOnClickListener(new View.OnClickListener() {
+       /* button_cust.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Custom_button.class));
 
             }
-        });
+        }); */
 
-    }
+    } 
 
     public void logout (View view) {
         FirebaseAuth.getInstance().signOut();
