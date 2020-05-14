@@ -1,7 +1,9 @@
 package com.example.authenticatorapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,8 +12,8 @@ import android.widget.EditText;
 public class Custom_button extends AppCompatActivity {
 
     EditText textView5, textView9, textView10, textView11, textView12, textView13, textView14, textView15, textView16;
-    String custom_string, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9;
-    Button button_custom;
+    String txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9;
+    Button button_custom, button_nav, one, two, three, four, five, six, seven, eight, nine;
 
     private void findViewByIds() {
 
@@ -25,7 +27,16 @@ public class Custom_button extends AppCompatActivity {
         textView15 = findViewById(R.id.textView15);
         textView16 = findViewById(R.id.textView16);
         textView5 = findViewById(R.id.textView5);
-
+        one = findViewById(R.id.button0);
+        two = findViewById(R.id.button1);
+        three = findViewById(R.id.button3);
+        four = findViewById(R.id.button4);
+        five = findViewById(R.id.button5);
+        six = findViewById(R.id.button6);
+        seven = findViewById(R.id.button7);
+        eight = findViewById(R.id.button8);
+        nine = findViewById(R.id.button9);
+        button_nav = findViewById(R.id.button_nav);
 
     }
 
@@ -60,5 +71,20 @@ public class Custom_button extends AppCompatActivity {
 
             }
         });
+
+        button_nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+            }
+        });
+
     }
+
+    /*public void openMainAct() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }*/
+
 }

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     TextView message,status;
     EditText customtxt;
-    Button one,zero,two,three,four,five,six,seven,eight,nine;
+    Button one,zero,two,three,four,five,six,seven,eight,nine, button_cust;
 
     BluetoothAdapter mybtadap;
     BluetoothDevice[] btArray;
@@ -70,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         implementListeners();
+
+        button_cust.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Custom_button.class));
+
+            }
+        });
+
     }
 
     public void logout (View view) {
@@ -250,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
         seven= (Button) findViewById(R.id.button7);
         eight= (Button) findViewById(R.id.button8);
         nine= (Button) findViewById(R.id.button9);
+        button_cust = findViewById(R.id.button_cust);
     }
 
     private class ServerClass extends Thread
@@ -381,7 +391,13 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
     }
 
+
+  /*  public void openAct(){
+        Intent intent = new Intent(this, Custom_button.class);
+        startActivity(intent);
+    }*/
 
 }
