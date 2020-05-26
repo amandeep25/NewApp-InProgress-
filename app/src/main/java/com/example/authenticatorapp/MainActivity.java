@@ -1,10 +1,16 @@
 package com.example.authenticatorapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -21,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 //import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,15 +36,19 @@ import java.util.Set;
 import java.util.UUID;
 //import com.example.bluetooth.R;
 
-import com.example.authenticatorapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
     Button listen,send, showDevices;
     ListView listView;
     TextView message,status;
+    TextView textView8;
     EditText customtxt;
     Button one,zero,two,three,four,five,six,seven,eight,nine, button_cust;
+    Button button10;
+    String userId;
+    FirebaseAuth fAuth;
+
 
     BluetoothAdapter mybtadap;
     BluetoothDevice[] btArray;
@@ -61,9 +72,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewByIds();
-        
-        
-        
+        button10 =findViewById(R.id.button10);
+        textView8 =findViewById(R.id.textView8);
+
+        userId = fAuth.getCurrentUser().getUid();
+        final FirebaseUser user = fAuth.getCurrentUser();
+
+        if(!user.isEmailVerified()){
+            button10.setVisibility(View.VISIBLE);
+            textView8.setVisibility(View.VISIBLE);
+
+            button10.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+
+                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(v.getContext(),"Verification Email has been sent",Toast.LENGTH_SHORT).show();
+                        }
+                    }) .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Log.d("tag", "onFailure: Email not sent" + e.getMessage());
+                        }
+                    });
+                }
+            });
+        }
+
         
     button_cust.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -256,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-    private void findViewByIds() {
+    private Button findViewByIds() {
         listen=(Button) findViewById(R.id.listen);
         send=(Button) findViewById(R.id.send);
         listView=(ListView) findViewById(R.id.listview);
@@ -275,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
         eight= (Button) findViewById(R.id.button8);
         nine= (Button) findViewById(R.id.button9);
         button_cust = findViewById(R.id.button_cust);
+        return null;
     }
 
     private class ServerClass extends Thread
