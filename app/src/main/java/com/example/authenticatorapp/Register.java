@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,39 +83,41 @@ public class Register extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid){
                                     
+                                    Toast.makeText(Register.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
                                 }
                             } ).addOnFailureListener(new OnFailureListener()){
                                 @Override
-                                public void onFailure(@NoNull Exception e)
+                                public void onFailure(@NoNull Exception e){
+                                    Log.d(TAG, msg: "onFailure: Email not sent" + e.getMessage());
                             }
                         });
 
 
-                            Toast.makeText(Register.this, "User Created!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        Toast.makeText(Register.this, "User Created!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
-
-                        }
-                        else{
-                            Toast.makeText(Register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar2.setVisibility(View.INVISIBLE);
-                        }
 
                     }
-                });
+                        else{
+                        Toast.makeText(Register.this, "Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar2.setVisibility(View.INVISIBLE);
+                    }
 
                 }
             });
 
+        }
+    });
+
         mtextView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getApplicationContext(),Login.class));
 
-            }
-        });
+        }
+    });
 
 
 
-    }
+}
 }
